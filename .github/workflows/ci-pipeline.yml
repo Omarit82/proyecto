@@ -24,7 +24,7 @@ jobs:
           node-version: '20'
 
       # 3. Instalar dependencias
-      - name: Instalar dependencias (Build Tool: npm)
+      - name: "Instalar dependencias (Build Tool: npm)"
         run: npm install
 
       # 4. Ejecutar pruebas unitarias automatizadas
