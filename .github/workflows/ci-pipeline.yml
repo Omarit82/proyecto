@@ -1,0 +1,32 @@
+name: Pipeline de Integración Continua (CI)
+
+# Disparadores: se ejecuta en cada push o Pull Request hacia main
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    # Entorno virtual donde se ejecuta el CI Server
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Descargar el código del repositorio
+      - name: Checkout del código fuente
+        uses: actions/checkout@v4
+
+      # 2. Configurar entorno Node.js
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # 3. Instalar dependencias
+      - name: Instalar dependencias (Build Tool: npm)
+        run: npm install
+
+      # 4. Ejecutar pruebas unitarias automatizadas
+      - name: Ejecutar pruebas unitarias con Jest
+        run: npm test
